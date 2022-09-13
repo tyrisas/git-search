@@ -17,7 +17,7 @@ export class ProjectService {
 
   fetchProjects(keyWords: string): Observable<Project[]> {
     if (keyWords) {
-      const link = `https://api.github.com/search/repositories?q=${keyWords} in:name`
+      const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name`
       return this.http.get<FetchResponse>(link).pipe(
         map(responseData => {
           const projects: Project[] = [];
