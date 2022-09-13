@@ -1,1 +1,9 @@
-<p>projects works!</p>
+<input type="text" (keyup)="onSearch($event)" />
+
+<li *ngFor="let project of projects$ | async">
+  {{ project.name }} ({{ project.stars }})
+</li>
+
+<div *ngIf="(projects$ | async)?.length == 0">
+  <p>No results</p>
+</div>
