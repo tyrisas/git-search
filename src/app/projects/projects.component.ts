@@ -28,16 +28,16 @@ export class ProjectsComponent implements OnInit {
     this.getProjectSubscription.unsubscribe();
   }
 
-  onSearch(event: Event) {
-    this.loading = true;
+  onSearch(event: Event): void {
     this.keywords = ((<HTMLInputElement>event.target).value).trim();
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
+      this.loading = true;
       this.getProjectSubscription = this.subscibeToGetProjects();
-    }, 1000);
+    }, 500);
   }
 
-  onPageChange(page: number) {
+  onPageChange(page: number): void {
     this.page = page;
     this.loading = true;
     this.getProjectSubscription = this.subscibeToGetProjects();

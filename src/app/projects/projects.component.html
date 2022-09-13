@@ -5,7 +5,7 @@
     let project of projects
       | paginate
         : {
-            id: 'server',
+            id: 'projectsList',
             itemsPerPage: 30,
             currentPage: page,
             totalItems: total
@@ -20,9 +20,14 @@
 </div>
 
 <div class="has-text-centered">
-  <div class="spinner" [ngClass]="{ hidden: !loading }"></div>
+  <div
+    class="spinner-border"
+    [hidden]="!loading"
+    [ngClass]="{ hidden: !loading }"
+    role="status"
+  ></div>
   <pagination-controls
     (pageChange)="onPageChange($event)"
-    id="server"
+    id="projectsList"
   ></pagination-controls>
 </div>
