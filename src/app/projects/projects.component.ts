@@ -1,5 +1,6 @@
 import { Project } from './project.model';
-import { Observable } from 'rxjs';
+import { ProjectsData } from '../projectsData.model';
+import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from './../project.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,25 +10,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  projects$: Observable<Project[]> = new Observable<Project[]>;
+  private getProjectSubscription!: Subscription
+  projects: Project[] = [];
   timeout: any = null;
-  keywordsInput: string = "";
+  keywords: string = "";
+  page: number = 1;
+  total: number = 0
+  loading: boolean = false;
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.projects$ = this.getProjects("");
+    this.getProjects();
+  }
+
+  ngOnDestroy(): void {
+    this.getProjectSubscription.unsubscribe();
   }
 
   onSearch(event: Event) {
-    this.keywordsInput = ((<HTMLInputElement>event.target).value).trim();
+    this.loading = true;
+    this.keywords = ((<HTMLInputElement>event.target).value).trim();
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.projects$ = this.getProjects(this.keywordsInput);
+      this.getProjectSubscription = this.subscibeToGetProjects();
     }, 1000);
   }
 
-  getProjects(keyWords: string = ""): Observable<Project[]> {
-    return this.projectService.fetchProjects(keyWords);
+  onPageChange(page: number) {
+    this.page = page;
+    this.loading = true;
+    this.getProjectSubscription = this.subscibeToGetProjects();
+  }
+
+  subscibeToGetProjects(): Subscription {
+    return this.getProjects().subscribe(res => {
+      this.projects = res.projects
+      this.total = res.totalCount;
+      this.loading = false;
+      this.page = res.page
+    });
+  }
+
+  getProjects(): Observable<ProjectsData> {
+    return this.projectService.fetchProjects(this.keywords, this.page);
   }
 }

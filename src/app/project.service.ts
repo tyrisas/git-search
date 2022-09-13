@@ -4,6 +4,7 @@ import { Project } from './projects/project.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { FetchResponse } from './fetchResponse.model';
+import { ProjectsData } from './projectsData.model';
 
 
 
@@ -15,12 +16,17 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
-  fetchProjects(keyWords: string): Observable<Project[]> {
+  fetchProjects(keyWords: string, page: number): Observable<ProjectsData> {
     if (keyWords) {
-      const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name`
+      const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name&page=${page}`
       return this.http.get<FetchResponse>(link).pipe(
         map(responseData => {
-          const projects: Project[] = [];
+          const projectsData: ProjectsData = {
+            projects: [],
+            totalCount: 0,
+            page: page
+          };
+
           for (const p of responseData.items) {
             const project: Project = {
               id: p.id,
@@ -32,13 +38,14 @@ export class ProjectService {
               description: p.description,
               url: p.description
             }
-            projects.push(project);
+            projectsData.projects.push(project);
           }
-          return projects;
+          projectsData.totalCount = responseData.total_count > 1000 ? 1000 : responseData.total_count;
+          return projectsData;
         })
       )
     } else {
-      return of([]);
+      return new Observable<ProjectsData>;
     }
   };
 }

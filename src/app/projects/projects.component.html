@@ -1,9 +1,28 @@
 <input type="text" (keyup)="onSearch($event)" />
 
-<li *ngFor="let project of projects$ | async">
+<li
+  *ngFor="
+    let project of projects
+      | paginate
+        : {
+            id: 'server',
+            itemsPerPage: 30,
+            currentPage: page,
+            totalItems: total
+          }
+  "
+>
   {{ project.name }} ({{ project.stars }})
 </li>
 
-<div *ngIf="(projects$ | async)?.length == 0">
+<div *ngIf="projects.length == 0">
   <p>No results</p>
+</div>
+
+<div class="has-text-centered">
+  <div class="spinner" [ngClass]="{ hidden: !loading }"></div>
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+    id="server"
+  ></pagination-controls>
 </div>
