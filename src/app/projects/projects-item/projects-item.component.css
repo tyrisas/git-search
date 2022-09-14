@@ -1,0 +1,17 @@
+.border-bottom {
+  border-bottom: 2px solid #eee;
+}
+
+.list {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
+
+.list small {
+  color: #dedddd;
+}

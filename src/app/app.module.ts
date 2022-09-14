@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProjectsItemComponent } from './projects/projects-item/projects-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     ProjectsComponent,
     DetailsComponent,
     PageNotFoundComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProjectsItemComponent
   ],
   imports: [
     BrowserModule,

@@ -27,20 +27,6 @@
   border-color: #eee;
 }
 
-.list {
-  padding-top: 20px;
-  padding-bottom: 10px;
-  align-items: center;
-}
-
-.red {
-  color: red;
-}
-
-.list small {
-  color: #dedddd;
-}
-
 .pagination ::ng-deep .current {
   background-color: red !important;
 }

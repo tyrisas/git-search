@@ -1,0 +1,20 @@
+<div class="d-flex flex-row justify-content-between list border-bottom">
+  <div class="d-flex flex-column mx-3 flex-shrink-1">
+    <p class="text-break">{{ project.name }}</p>
+    <div class="d-flex align-items-center">
+      <fa-icon [icon]="faStar" class="red"></fa-icon>
+      <span>{{ project.stars }}</span>
+    </div>
+  </div>
+  <button
+    style="height: 50px"
+    class="btn btn-outline-danger d-flex flex-row align-self-end flex-shrink-0"
+    [routerLink]="['/projects', project.owner, project.name]"
+  >
+    <span class="ms-1 mt-1 d-none d-sm-block">See details</span>
+    <fa-icon
+      [icon]="faArrowTurnDown"
+      class="fa-rotate-90 d-inline-block align-self-end ms-3"
+    ></fa-icon>
+  </button>
+</div>
