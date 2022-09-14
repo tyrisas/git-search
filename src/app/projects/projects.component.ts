@@ -25,6 +25,7 @@ export class ProjectsComponent implements OnInit {
   page: number = 1;
   total: number = 0
   loading: boolean = false;
+  showFeedback = false;
 
   constructor(private projectService: ProjectService, private loadingService: LoadingService) { }
 
@@ -38,10 +39,12 @@ export class ProjectsComponent implements OnInit {
   }
 
   onSearch(keywords: string): void {
+    this.showFeedback = false;
     this.keywords = keywords;
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.getProjectSubscription = this.subscibeToGetProjects();
+      this.showFeedback = true;
     }, 500);
   }
 
@@ -51,10 +54,15 @@ export class ProjectsComponent implements OnInit {
   }
 
   subscibeToGetProjects(): Subscription {
-    return this.getProjects().subscribe(res => {
-      this.projects = res.projects
-      this.total = res.totalCount;
-      this.page = res.page
+    return this.getProjects().subscribe({
+      next: res => {
+        this.projects = res.projects
+        this.total = res.totalCount;
+        this.page = res.page
+      }, error: err => {
+        //API rate limit exceeded
+        alert(err?.error?.message)
+      }
     });
   }
 
