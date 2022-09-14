@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit {
 
   projects: Project[] = [];
   timeout: any = null;
-  keywords: string = "";
+  keywords: string = '';
   page: number = 1;
   total: number = 0
   loading: boolean = false;

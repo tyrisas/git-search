@@ -13,13 +13,13 @@ import { Project } from '../../models/project.model';
 })
 export class DetailsComponent implements OnInit {
   project$: Observable<Project> = of({
-    name: "",
+    name: '',
     stars: 0,
     forks: 0,
-    owner: "",
-    avatar: "",
-    description: "",
-    url: ""
+    owner: '',
+    avatar: '',
+    description: '',
+    url: ''
   });
 
   faStar = faStar;
