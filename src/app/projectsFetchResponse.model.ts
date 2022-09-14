@@ -1,8 +1,7 @@
-export interface FetchResponse {
+export interface ProjectsFetchResponse {
   total_count: number,
   incomplete_results: boolean,
   items: {
-    id: number,
     name: string,
     stargazers_count: number,
     forks_count: number,

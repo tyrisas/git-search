@@ -1,9 +1,10 @@
+import { ProjectFetchResponse } from './projectFetchResponse.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Project } from './projects/project.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FetchResponse } from './fetchResponse.model';
+import { ProjectsFetchResponse } from './projectsFetchResponse.model';
 import { ProjectsData } from './projectsData.model';
 
 
@@ -19,7 +20,7 @@ export class ProjectService {
   fetchProjects(keyWords: string, page: number): Observable<ProjectsData> {
     if (keyWords) {
       const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name&page=${page}&per_page=10`
-      return this.http.get<FetchResponse>(link).pipe(
+      return this.http.get<ProjectsFetchResponse>(link).pipe(
         map(responseData => {
           const projectsData: ProjectsData = {
             projects: [],
@@ -29,7 +30,6 @@ export class ProjectService {
 
           for (const p of responseData.items) {
             const project: Project = {
-              id: p.id,
               name: p.name,
               stars: p.stargazers_count,
               forks: p.forks_count,
@@ -52,5 +52,24 @@ export class ProjectService {
       });
     }
   };
-}
 
+  // https://api.github.com/repos/tyrisas/git-search
+  fetchProject(owner: string, projectName: string): Observable<Project> {
+    const link = `https://api.github.com/repos/${owner}/${projectName}`;
+
+    return this.http.get<ProjectFetchResponse>(link).pipe(
+      map(fetchedProject => {
+        const project: Project = {
+          name: fetchedProject.name,
+          stars: fetchedProject.stargazers_count,
+          forks: fetchedProject.forks_count,
+          owner: fetchedProject.owner.login,
+          avatar: fetchedProject.owner.avatar_url,
+          description: fetchedProject.description,
+          url: fetchedProject.html_url
+        };
+        return project;
+      }
+      ));
+  }
+}
