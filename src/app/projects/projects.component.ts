@@ -3,6 +3,8 @@ import { ProjectsData } from '../projectsData.model';
 import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from './../project.service';
 import { Component, OnInit } from '@angular/core';
+import { faMagnifyingGlass, faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-projects',
@@ -11,6 +13,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
   private getProjectSubscription!: Subscription
+
+  faMagnifyingGlass = faMagnifyingGlass;
+  faStar = faStar;
+  faArrowTurnDown = faArrowTurnDown;
+
   projects: Project[] = [];
   timeout: any = null;
   keywords: string = "";

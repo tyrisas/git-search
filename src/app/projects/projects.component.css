@@ -1,0 +1,65 @@
+.card {
+  background-color: #fff;
+  padding: 15px;
+  border: none;
+}
+
+.whiteBg {
+  background-color: #fff;
+}
+
+.greyBG {
+  background-color: rgb(247, 244, 244);
+}
+
+.input-box {
+  position: relative;
+}
+
+.input-box fa-icon {
+  position: absolute;
+  right: 13px;
+  top: 15px;
+  color: #ced4da;
+}
+
+.input-box .spinner-border {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+  color: #ced4da;
+}
+
+.form-control {
+  height: 50px;
+  background-color: #eeeeee69;
+}
+
+.form-control:focus {
+  background-color: #eeeeee69;
+  box-shadow: none;
+  border-color: #eee;
+}
+
+.list {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  /* display: flex; */
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
+
+.list small {
+  color: #dedddd;
+}
+
+.display-front {
+  z-index: 999999;
+}
+
+.pagination ::ng-deep .current {
+  background-color: red !important;
+}
