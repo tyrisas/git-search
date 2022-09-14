@@ -1,11 +1,11 @@
+import { Component, OnInit } from '@angular/core';
+import { faMagnifyingGlass, faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
+import { Observable, Subscription } from 'rxjs';
+
 import { LoadingService } from './../services/loading/loading.service';
 import { Project } from '../../models/project.model';
 import { ProjectsData } from '../../models/projectsData.model';
-import { Observable, Subscription } from 'rxjs';
 import { ProjectService } from '../services/project/project.service';
-import { Component, OnInit } from '@angular/core';
-import { faMagnifyingGlass, faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-projects',

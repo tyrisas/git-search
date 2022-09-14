@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
@@ -6,7 +6,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css']
 })
-export class InputComponent implements OnInit {
+export class InputComponent {
   @Input() searchIcon!: IconDefinition;
   @Input() loading!: boolean;
   @Output() search = new EventEmitter<string>();
@@ -15,10 +15,4 @@ export class InputComponent implements OnInit {
     const keywords = ((<HTMLInputElement>event.target).value).trim();
     this.search.emit(keywords);
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

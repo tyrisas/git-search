@@ -1,7 +1,8 @@
-import { LoadingService } from './../loading/loading.service';
-import { ProjectFetchResponse } from '../../../models/projectFetchResponse.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+
+import { LoadingService } from './../loading/loading.service';
+import { ProjectFetchResponse } from '../../../models/projectFetchResponse.model';
 import { Project } from '../../../models/project.model';
 import { Observable, of } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
@@ -20,14 +21,14 @@ export class ProjectService {
       this.loadingService.setLoading(true)
       const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name&page=${page}&per_page=10`
       return this.http.get<ProjectsFetchResponse>(link).pipe(
-        map(responseData => {
+        map(fetchedData => {
           const projectsData: ProjectsData = {
             projects: [],
             totalCount: 0,
             page: page
           };
 
-          for (const p of responseData.items) {
+          for (const p of fetchedData.items) {
             const project: Project = {
               name: p.name,
               stars: p.stargazers_count,
@@ -39,7 +40,7 @@ export class ProjectService {
             }
             projectsData.projects.push(project);
           }
-          projectsData.totalCount = responseData.total_count > 1000 ? 1000 : responseData.total_count;
+          projectsData.totalCount = fetchedData.total_count > 1000 ? 1000 : fetchedData.total_count;
           return projectsData;
         }), finalize(() => this.loadingService.setLoading(false))
       )
