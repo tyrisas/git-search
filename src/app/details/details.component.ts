@@ -1,5 +1,5 @@
-import { ProjectService } from '../../services/project/project.service';
-import { Project } from '../../../models/project.model';
+import { ProjectService } from '../services/project/project.service';
+import { Project } from '../../models/project.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';

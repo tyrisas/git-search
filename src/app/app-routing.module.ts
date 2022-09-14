@@ -1,4 +1,4 @@
-import { DetailsComponent } from './projects/details/details.component';
+import { DetailsComponent } from './details/details.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
