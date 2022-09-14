@@ -18,7 +18,7 @@ export class ProjectService {
 
   fetchProjects(keyWords: string, page: number): Observable<ProjectsData> {
     if (keyWords) {
-      const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name&page=${page}`
+      const link = `https://api.github.com/search/repositories?q=${encodeURIComponent(keyWords)} in:name&page=${page}&per_page=10`
       return this.http.get<FetchResponse>(link).pipe(
         map(responseData => {
           const projectsData: ProjectsData = {
@@ -45,7 +45,11 @@ export class ProjectService {
         })
       )
     } else {
-      return new Observable<ProjectsData>;
+      return of({
+        projects: [],
+        totalCount: 0,
+        page: 1
+      });
     }
   };
 }
