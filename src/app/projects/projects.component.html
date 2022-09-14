@@ -1,57 +1,55 @@
-<div class="card" [ngClass]="loading ? 'greyBG' : 'whiteBG'">
-  <div class="input-box">
-    <input
-      type="text"
-      class="form-control"
-      (keyup)="onSearch($event)"
-      placeholder="Author, project name, ..."
-    />
-    <fa-icon [icon]="faMagnifyingGlass" [hidden]="loading"></fa-icon>
-    <div class="spinner-border" [hidden]="!loading" role="status"></div>
-  </div>
-  <div class="d-flex justify-content-center mt-3" *ngIf="projects.length == 0">
-    <p>No results</p>
-  </div>
-  <div
-    *ngFor="
-      let project of projects
-        | paginate
-          : {
-              id: 'projectsList',
-              itemsPerPage: 10,
-              currentPage: page,
-              totalItems: total
-            }
-    "
-    class="list"
-  >
-    <div class="d-flex flex-row justify-content-between">
-      <div class="d-flex flex-column mx-3 flex-shrink-1">
-        <p class="text-break">{{ project.name }}</p>
-        <div class="d-flex align-items-center">
-          <fa-icon [icon]="faStar" class="red"></fa-icon>
-          <span>{{ project.stars }}</span>
-        </div>
+<div class="input-box">
+  <input
+    type="text"
+    class="form-control"
+    (keyup)="onSearch($event)"
+    placeholder="Author, project name, ..."
+  />
+  <fa-icon [icon]="faMagnifyingGlass" [hidden]="loading"></fa-icon>
+  <div class="spinner-border" [hidden]="!loading" role="status"></div>
+</div>
+<div class="d-flex justify-content-center mt-3" *ngIf="projects.length == 0">
+  <p>No results</p>
+</div>
+<div
+  *ngFor="
+    let project of projects
+      | paginate
+        : {
+            id: 'projectsList',
+            itemsPerPage: 10,
+            currentPage: page,
+            totalItems: total
+          }
+  "
+  class="list"
+>
+  <div class="d-flex flex-row justify-content-between">
+    <div class="d-flex flex-column mx-3 flex-shrink-1">
+      <p class="text-break">{{ project.name }}</p>
+      <div class="d-flex align-items-center">
+        <fa-icon [icon]="faStar" class="red"></fa-icon>
+        <span>{{ project.stars }}</span>
       </div>
-      <button
-        style="height: 50px"
-        class="btn btn-outline-danger d-flex flex-row align-self-end flex-shrink-0"
-        [routerLink]="['/projects', project.owner, project.name]"
-      >
-        <span class="ms-1 mt-1 d-none d-sm-block">See details</span>
-        <fa-icon
-          [icon]="faArrowTurnDown"
-          class="fa-rotate-90 d-inline-block align-self-end ms-3"
-        ></fa-icon>
-      </button>
     </div>
+    <button
+      style="height: 50px"
+      class="btn btn-outline-danger d-flex flex-row align-self-end flex-shrink-0"
+      [routerLink]="['/projects', project.owner, project.name]"
+    >
+      <span class="ms-1 mt-1 d-none d-sm-block">See details</span>
+      <fa-icon
+        [icon]="faArrowTurnDown"
+        class="fa-rotate-90 d-inline-block align-self-end ms-3"
+      ></fa-icon>
+    </button>
   </div>
+</div>
 
-  <div class="d-flex justify-content-center mt-3">
-    <pagination-controls
-      (pageChange)="onPageChange($event)"
-      id="projectsList"
-      class="pagination"
-    ></pagination-controls>
-  </div>
+<div class="d-flex justify-content-center mt-3">
+  <pagination-controls
+    (pageChange)="onPageChange($event)"
+    id="projectsList"
+    class="pagination"
+  ></pagination-controls>
 </div>

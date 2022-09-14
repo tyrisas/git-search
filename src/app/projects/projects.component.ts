@@ -1,3 +1,4 @@
+import { LoadingService } from './../services/loading/loading.service';
 import { Project } from '../../models/project.model';
 import { ProjectsData } from '../../models/projectsData.model';
 import { Observable, Subscription } from 'rxjs';
@@ -25,10 +26,11 @@ export class ProjectsComponent implements OnInit {
   total: number = 0
   loading: boolean = false;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(private projectService: ProjectService, private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.getProjects();
+    this.getLoadingState();
   }
 
   ngOnDestroy(): void {
@@ -39,14 +41,12 @@ export class ProjectsComponent implements OnInit {
     this.keywords = ((<HTMLInputElement>event.target).value).trim();
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
-      this.loading = true;
       this.getProjectSubscription = this.subscibeToGetProjects();
     }, 500);
   }
 
   onPageChange(page: number): void {
     this.page = page;
-    this.loading = true;
     this.getProjectSubscription = this.subscibeToGetProjects();
   }
 
@@ -54,12 +54,17 @@ export class ProjectsComponent implements OnInit {
     return this.getProjects().subscribe(res => {
       this.projects = res.projects
       this.total = res.totalCount;
-      this.loading = false;
       this.page = res.page
     });
   }
 
   getProjects(): Observable<ProjectsData> {
     return this.projectService.fetchProjects(this.keywords, this.page);
+  }
+
+  getLoadingState() {
+    this.loadingService.loading$.subscribe(loadingState => {
+      this.loading = loadingState;
+    })
   }
 }

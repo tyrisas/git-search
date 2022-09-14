@@ -1,8 +1,8 @@
 import { ProjectService } from '../../services/project/project.service';
 import { Project } from '../../../models/project.model';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
 import { faStar, faCodeFork } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -24,11 +24,13 @@ export class DetailsComponent implements OnInit {
   faStar = faStar;
   faCodeFork = faCodeFork;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.project$ = this.getProject();
-    this.project$.subscribe(d => console.log(d))
+    this.project$ = this.getProject().pipe(catchError(() => {
+      this.router.navigate(['/not-found'])
+      return of();
+    }));
   }
 
   getProject(): Observable<Project> {

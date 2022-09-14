@@ -1,0 +1,13 @@
+.card {
+  background-color: #fff;
+  padding: 15px;
+  border: none;
+}
+
+.whiteBg {
+  background-color: #fff;
+}
+
+.greyBG {
+  background-color: rgb(247, 244, 244);
+}
