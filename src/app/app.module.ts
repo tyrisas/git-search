@@ -10,13 +10,15 @@ import { DetailsComponent } from './projects/details/details.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
     DetailsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
