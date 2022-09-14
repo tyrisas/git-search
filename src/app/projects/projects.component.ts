@@ -35,8 +35,8 @@ export class ProjectsComponent implements OnInit {
     this.getProjectSubscription.unsubscribe();
   }
 
-  onSearch(event: Event): void {
-    this.keywords = ((<HTMLInputElement>event.target).value).trim();
+  onSearch(keywords: string): void {
+    this.keywords = keywords;
     clearTimeout(this.timeout);
     this.timeout = setTimeout(() => {
       this.getProjectSubscription = this.subscibeToGetProjects();

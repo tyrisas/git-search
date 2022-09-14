@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProjectsItemComponent } from './projects/projects-item/projects-item.component';
+import { InputComponent } from './input/input.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProjectsItemComponent } from './projects/projects-item/projects-item.co
     DetailsComponent,
     PageNotFoundComponent,
     NavBarComponent,
-    ProjectsItemComponent
+    ProjectsItemComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

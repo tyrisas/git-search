@@ -1,0 +1,28 @@
+.input-box {
+  position: relative;
+}
+
+.input-box fa-icon {
+  position: absolute;
+  right: 13px;
+  top: 15px;
+  color: #ced4da;
+}
+
+.input-box .spinner-border {
+  position: absolute;
+  right: 13px;
+  top: 10px;
+  color: #ced4da;
+}
+
+.form-control {
+  height: 50px;
+  background-color: #eeeeee69;
+}
+
+.form-control:focus {
+  background-color: #eeeeee69;
+  box-shadow: none;
+  border-color: #eee;
+}

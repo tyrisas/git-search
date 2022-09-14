@@ -1,0 +1,10 @@
+<div class="input-box">
+  <input
+    type="text"
+    class="form-control"
+    (keyup)="onSearch($event)"
+    placeholder="Author, project name, ..."
+  />
+  <fa-icon [icon]="searchIcon" [hidden]="loading"></fa-icon>
+  <div class="spinner-border" [hidden]="!loading" role="status"></div>
+</div>
