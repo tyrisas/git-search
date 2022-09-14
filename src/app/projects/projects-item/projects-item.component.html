@@ -2,7 +2,7 @@
   <div class="d-flex flex-column mx-3 flex-shrink-1">
     <p class="text-break">{{ project.name }}</p>
     <div class="d-flex align-items-center">
-      <fa-icon [icon]="faStar" class="red"></fa-icon>
+      <fa-icon [icon]="starIcon" class="red"></fa-icon>
       <span>{{ project.stars }}</span>
     </div>
   </div>
@@ -13,7 +13,7 @@
   >
     <span class="ms-1 mt-1 d-none d-sm-block">See details</span>
     <fa-icon
-      [icon]="faArrowTurnDown"
+      [icon]="arrowIcon"
       class="fa-rotate-90 d-inline-block align-self-end ms-3"
     ></fa-icon>
   </button>

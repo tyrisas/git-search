@@ -1,7 +1,6 @@
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { Project } from '../../../models/project.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-projects-item',
@@ -10,9 +9,9 @@ import { faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProjectsItemComponent implements OnInit {
   @Input() project!: Project;
+  @Input() starIcon!: IconDefinition;
+  @Input() arrowIcon!: IconDefinition;
 
-  faStar = faStar;
-  faArrowTurnDown = faArrowTurnDown;
 
   constructor() { }
 

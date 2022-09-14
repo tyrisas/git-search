@@ -13,7 +13,6 @@ export class InputComponent implements OnInit {
 
   onSearch(event: Event): void {
     const keywords = ((<HTMLInputElement>event.target).value).trim();
-    console.log(keywords);
     this.search.emit(keywords);
   }
 
