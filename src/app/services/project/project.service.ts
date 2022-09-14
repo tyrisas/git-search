@@ -1,13 +1,11 @@
-import { ProjectFetchResponse } from './projectFetchResponse.model';
+import { ProjectFetchResponse } from '../../../models/projectFetchResponse.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Project } from './projects/project.model';
+import { Project } from '../../../models/project.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { ProjectsFetchResponse } from './projectsFetchResponse.model';
-import { ProjectsData } from './projectsData.model';
-
-
+import { ProjectsFetchResponse } from '../../../models/projectsFetchResponse.model';
+import { ProjectsData } from '../../../models/projectsData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +51,6 @@ export class ProjectService {
     }
   };
 
-  // https://api.github.com/repos/tyrisas/git-search
   fetchProject(owner: string, projectName: string): Observable<Project> {
     const link = `https://api.github.com/repos/${owner}/${projectName}`;
 

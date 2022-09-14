@@ -1,4 +1,4 @@
-import { Project } from './projects/project.model';
+import { Project } from './project.model';
 
 export interface ProjectsData {
   projects: Project[],
