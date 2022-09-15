@@ -1,7 +1,7 @@
-import { Project } from './project.model';
+import { ProjectEssentials } from './projectEssentials.model';
 
 export interface ProjectsData {
-  projects: Project[],
+  projects: ProjectEssentials[],
   totalCount: number,
   page: number,
 }

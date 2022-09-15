@@ -1,3 +1,4 @@
+import { ProjectEssentials } from './../../../models/projectEssentials.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
@@ -29,14 +30,10 @@ export class ProjectService {
           };
 
           for (const p of fetchedData.items) {
-            const project: Project = {
+            const project: ProjectEssentials = {
               name: p.name,
               stars: p.stargazers_count,
-              forks: p.forks_count,
               owner: p.owner.login,
-              avatar: p.owner.avatar_url,
-              description: p.description,
-              url: p.description
             }
             projectsData.projects.push(project);
           }

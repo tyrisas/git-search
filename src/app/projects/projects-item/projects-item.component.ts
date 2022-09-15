@@ -1,7 +1,7 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { Component, Input } from '@angular/core';
 
-import { Project } from '../../../models/project.model';
+import { ProjectEssentials } from './../../../models/projectEssentials.model';
 
 @Component({
   selector: 'app-projects-item',
@@ -9,7 +9,7 @@ import { Project } from '../../../models/project.model';
   styleUrls: ['./projects-item.component.css']
 })
 export class ProjectsItemComponent {
-  @Input() project!: Project;
+  @Input() project!: ProjectEssentials;
   @Input() starIcon!: IconDefinition;
   @Input() arrowIcon!: IconDefinition;
 }

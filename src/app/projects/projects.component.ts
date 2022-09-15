@@ -1,9 +1,9 @@
+import { ProjectEssentials } from './../../models/projectEssentials.model';
 import { Component, OnInit } from '@angular/core';
 import { faMagnifyingGlass, faStar, faArrowTurnDown } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subscription } from 'rxjs';
 
 import { LoadingService } from './../services/loading/loading.service';
-import { Project } from '../../models/project.model';
 import { ProjectsData } from '../../models/projectsData.model';
 import { ProjectService } from '../services/project/project.service';
 
@@ -19,7 +19,7 @@ export class ProjectsComponent implements OnInit {
   faStar = faStar;
   faArrowTurnDown = faArrowTurnDown;
 
-  projects: Project[] = [];
+  projects: ProjectEssentials[] = [];
   timeout: any = null;
   keywords: string = '';
   page: number = 1;
